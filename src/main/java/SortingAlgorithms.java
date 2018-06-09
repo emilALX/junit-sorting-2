@@ -21,4 +21,5 @@ public class SortingAlgorithms {
 			n--;
 		} while (n > 1);
 	}
+
 }
