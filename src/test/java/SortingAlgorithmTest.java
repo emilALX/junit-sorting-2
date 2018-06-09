@@ -1,14 +1,10 @@
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.List;
 
 public class SortingAlgorithmTest {
-
     private SortingAlgorithms algorytm;
-
 
     @Before
     public void setUp() throws Exception {
@@ -24,7 +20,7 @@ public class SortingAlgorithmTest {
         algorytm.sort(testArray, asc);
 
         for (int i = 0; i < testArray.length; ++i){
-            Assert.assertEquals("Zła kolejność", resultArray[1], testArray[1], 0.0001);
+            Assert.assertEquals("Błąd sortowania na pozycji: " + i, resultArray[1], testArray[1], 0.0001);
         }
     }
 
@@ -37,7 +33,7 @@ public class SortingAlgorithmTest {
         algorytm.sort(testArray, asc);
 
         for (int i = 0; i < testArray.length; ++i){
-            Assert.assertEquals("Zła kolejność", resultArray[1], testArray[1], 0.0001);
+            Assert.assertEquals("Błąd sortowania na pozycji: " + i, resultArray[1], testArray[1], 0.0001);
         }
     }
 
@@ -50,9 +46,10 @@ public class SortingAlgorithmTest {
         algorytm.sort(testArray, asc);
 
         for (int i = 0; i < testArray.length; ++i){
-            Assert.assertEquals("Zła kolejność", resultArray[1], testArray[1], 0.0001);
+            Assert.assertEquals("Błąd sortowania na pozycji: " + i, resultArray[1], testArray[1], 0.0001);
         }
     }
+
     @Test
     public void SortingTest1() throws Exception {
 
@@ -65,6 +62,7 @@ public class SortingAlgorithmTest {
                 Assert.assertEquals("Bledne sortowanie", afterSortAsc[i], toSortAsc[i], 0.001);
             }
     }
+
     @Test
     public void SortingTest2() throws Exception {
 
@@ -98,7 +96,6 @@ public class SortingAlgorithmTest {
 
     @Test(timeout=100)
     public void SortingTest4() throws Exception {
-
         double[] toSortRandom = new double[1000];
 
         for (int i = 0; i < toSortRandom.length; i++) {
@@ -106,6 +103,39 @@ public class SortingAlgorithmTest {
         }
         algorytm.sort(toSortRandom, true);
     }
+
+
+    @Test
+    public void testRandomArray() throws Exception {
+
+        double[] randomArray = new double[1000];
+        for (int i = 0; i < randomArray.length; ++i){
+            randomArray[i] = Math.random();
+        }
+
+        algorytm.sort(randomArray, true);
+
+        for (int i = 0; i < (randomArray.length - 1); ++i){
+            double number1 = randomArray[i];
+            double number2 = randomArray[i + 1];
+
+            Assert.assertTrue(
+                    "Zła kolejność dla pary liczb na pozycjach: " + i + ", " + (i + 1),
+                    number1 <= number2);
+        }
+    }
+
+
+
+    @Test(timeout = 100)
+    public void test100ms() throws Exception {
+
+        double[] randomArray = new double[4000];
+        for (int i = 0; i < randomArray.length; ++i){
+            randomArray[i] = Math.random();
+        }
+        algorytm.sort(randomArray, true);
+    }
+
+
 }
-
-
