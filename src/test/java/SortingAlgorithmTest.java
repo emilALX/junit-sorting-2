@@ -1,8 +1,7 @@
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
 
 public class SortingAlgorithmTest {
     private SortingAlgorithms algorytm;
@@ -50,5 +49,21 @@ public class SortingAlgorithmTest {
             Assert.assertEquals("Zła kolejność", resultArray[1], testArray[1], 0.0001);
         }
     }
+    @Test
+    public void SortingTest() throws Exception {
 
+        double[] toSortAsc = {1, 5, 6, 4, 3, 2};
+        double[] afterSortAsc = {1, 2, 3, 4, 5, 6};
+
+        double[] toSortDesc = {1, 5, 6, 4, 3, 2};
+        double[] afterSortDesc = {6, 5, 4, 3, 2, 1};
+
+        algorytm.sort(toSortAsc, true);
+        algorytm.sort(toSortDesc, false);
+
+        for (int i = 0; i < toSortAsc.length; i++){
+            Assert.assertEquals("Bledne sortowanie", afterSortAsc[i], toSortAsc[i], 0.001);
+            Assert.assertEquals("Bledne sortowanie", afterSortDesc[i], toSortDesc[i], 0.001);
+        }
+    }
 }
