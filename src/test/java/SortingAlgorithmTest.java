@@ -3,6 +3,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+
 public class SortingAlgorithmTest {
 
     private SortingAlgorithms algorytm;
@@ -74,6 +76,35 @@ public class SortingAlgorithmTest {
         for (int i = 0; i < toSortDesc.length; i++){
             Assert.assertEquals("Bledne sortowanie", afterSortDesc[i], toSortDesc[i], 0.001);
         }
+    }
+
+    @Test
+    public void SortingTest3() throws Exception {
+
+        double[] toSortRandom = new double[100];
+
+        for (int i = 0; i < toSortRandom.length; i++){
+           toSortRandom[i] = Math.random();
+        }
+
+        algorytm.sort(toSortRandom, true);
+
+        for (int i = 1; i < toSortRandom.length; i++){
+            double a = toSortRandom[i-1];
+            double b = toSortRandom[i];
+            Assert.assertTrue("Bledne sortowanie", a <= b );
+        }
+    }
+
+    @Test(timeout=100)
+    public void SortingTest4() throws Exception {
+
+        double[] toSortRandom = new double[1000];
+
+        for (int i = 0; i < toSortRandom.length; i++) {
+            toSortRandom[i] = Math.random();
+        }
+        algorytm.sort(toSortRandom, true);
     }
 }
 
